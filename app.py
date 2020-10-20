@@ -44,7 +44,7 @@ def not_found(error=None):
 		'message': 'Resource Not Found ' + request.url,
         'status': 404
 	}
-	Response = jsonify(message)
+	response = jsonify(message)
 	response.status_code = 404
 	return response
 
