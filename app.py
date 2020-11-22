@@ -9,12 +9,6 @@ mongo = PyMongo(app)
 
 
 
-@app.route("/", methods=["GET"])
-def index():
-	return "Hello World"
-
-
-
 @app.route("/name", methods=["GET"])
 def get_name():
 	users = mongo.db.users.find()
