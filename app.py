@@ -8,27 +8,29 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/user.user"
 mongo = PyMongo(app)
 
 
+@app.route('/username', methods=['POST'])
+def post_username():
+    name = request.json['name']
+    age = request.json['age']
 
-@app.route("/name", methods=["GET"])
-def get_name():
-	users = mongo.db.users.find()
-	response = json_util.dumps(users)
-	return Response(response, mimetype="application/json")
+    id = mongo.db.user.insert_one({
+        'name': name,
+        'age': age
+    })
 
+    reponse = jsonify({
+        '_id': str(id),
+        'name': name,
+        'age': age
+    })
+    response.status_code = 201
+    return reponse
 
-
-@app.route("/name", methods=["POST"])
-def add_name():
-	name = request.json['name']
-
-	id = mongo.db.users.insert({
-		'name': name
-		})
-	response = jsonify({
-		'name' : name
-		})
-	response.status_code = 201
-	return response
+@app.route('/username', methods=['GET'])
+def get_username():
+    users = mongo.db.user.find()
+    finish = json_util.dumps(users)
+    return Response(finish, mimetype="application/json")
 
 	
 
