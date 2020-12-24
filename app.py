@@ -11,7 +11,7 @@ mongo = PyMongo(app)
 
 @app.route("/", methods=["GET"])
 def index():
-	return "Pymmongo"
+	return "Welcome Flask-pymongo"
 
 
 
