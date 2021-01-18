@@ -3,5 +3,9 @@ Rest api using flask-pymongo with mongodb
 
 ### Install requirements: ###
 ```
-pip install -r requirements.txt
+pipenv install
+```
+### Activate venv: ###
+```
+pipenv shell
 ```
